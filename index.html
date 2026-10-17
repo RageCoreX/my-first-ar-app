@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Magic Summon Circle</title>
+
+    <!--Include A-Frame (3D Framework)-->
+    <script src="https://aframe.io"></script>
+    <!--Include AR.js for A-Frame-->
+    <script src="https://githack.com"></script>
+
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        /* Neon UI Overlay */
+        .ar-ui{
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            background: rgba(10, 10, 25, 0.85);
+            color: #00f0ff;
+            padding: 12px 24px;
+            border: 2px solid #00f0ff;
+            box-shadow: 0 0 15px;
+            border-radius: 30px;
+            pointer-events: none;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="ar-ui">
+        🔮 Scan Hiro Marker to Manifest Portal🔮
+    </div>
+    <!--Setup Ar Scene-->
+    <a-scene embedded arjs="sourceType: webcam; debugPanelError: false">
+        <a-marker preset="hiro">
+
+            <a-cylinder position="0 0.01 0"
+                        radius="1.2"
+                        height="0.02"
+                        segments-radial="8"
+                        material="color: #bc00dd; wireframe: true; opacity: 0.8"
+                        animation="property: rotation; to: 0 -360 0; loop: true; dur: 4000; easing: linear">
+            </a-cylinder>
+
+            <a-ring position="0 0.02 0"
+                    rotation="-90 0 0"
+                    radius-inner="0.7"
+                    radius-outer="0.9"
+                    material="color: #00f0ff; opacity: 0.6; side: double"
+                    animation="property: rotation; to: -90 -360 0; loop: true; dur: 6000; easing: linear">
+            </a-ring>
+
+            <a-octahedron radius="0.35"
+                          material="color: #00f0ff; opacity: 0.9; metalness: 0.2; roughness: 0.1"
+                          animation="property: rotation; to: 0 360 360; loop: true; dur: 5000; easing: linear">
+            </a-octahedron>
+
+            <a-circle position="0 0.005 0"
+                      rotation="-90 0 0"
+                      radius="0.6"
+                      material="color: #00f0ff; opacity: 0.2; side: double">
+            </a-circle>
+        </a-marker>
+    </a-scene>
+
+    <script>
+        // Optional Console Logs to check Stability before your deadline
+        const marker = document.querySelector('a-marker');
+        marker.addEventListener('markerFound', () => {
+            console.log("Portal active! Magic array loaded.");
+        })
+    </script>
+    
+</body>
+</html>
